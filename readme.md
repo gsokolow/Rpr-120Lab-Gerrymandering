@@ -24,25 +24,21 @@ The devliverables include summary statistics for the compactness and percentage 
 percentage votes for Republican presidential candidate by voting precinct, percentage votes for the 2016 Republican presidential candidate by 2016 districts, percentage of votes for the 2016 Republican presidential candidate by 2019 districts, and the compactness scores for each 2016 and 2019 district.
 
 
-
-
-A graphical abstract of the study could also be included as an image here.
-
 ## Study Metadata
 
-- `Key words`: Comma-separated list of keywords (tags) for searchability. Geographers often use one or two keywords each for: theory, geographic context, and methods.
-- `Subject`: select from the [BePress Taxonomy](http://digitalcommons.bepress.com/cgi/viewcontent.cgi?article=1008&context=reference)
-- `Date created`: date when project was started
-- `Date modified`: date of most recent revision
-- `Spatial Coverage`: Specify the geographic extent of your study. This may be a place name and link to a feature in a gazetteer like GeoNames or OpenStreetMap, or a well known text (WKT) representation of a bounding box.
-- `Spatial Resolution`: Specify the spatial resolution as a scale factor, description of the level of detail of each unit of observation (including administrative level of administrative areas), and/or or distance of a raster GRID size
-- `Spatial Reference System`: Specify the geographic or projected coordinate system for the study
-- `Temporal Coverage`: Specify the temporal extent of your study---i.e. the range of time represented by the data observations.
-- `Temporal Resolution`: Specify the temporal resolution of your study---i.e. the duration of time for which each observation represents or the revisit period for repeated observations
-- `Funding Name`: name of funding for the project
-- `Funding Title`: title of project grant
-- `Award info URI`: web address for award information
-- `Award number`: award number
+- `Key words`: gerrymandering, north carolina, area weighted reaggregation, 2016 elections, congressional redistricting
+- `Subject`: Social and Behavioral Sciences: Geography
+- `Date created`: November 30, 2023
+- `Date modified`: November 30, 2023
+- `Spatial Coverage`: North Carolina, USA.
+- `Spatial Resolution`: Congressional districts, voting precincts
+- `Spatial Reference System`: [SPCS "default" NC (Lambert Conformal Conic 1-parallel)](https://ncgs.state.nc.us/docs/2022_Datum_WG_June_2018_2.pdf)
+- `Temporal Coverage`: [2016](https://www.ncleg.gov/Redistricting/DistrictPlanMap/C2016E) - [2019](https://www.ncleg.gov/Redistricting/DistrictPlanMap/C2019E)
+- `Temporal Resolution`: One election cycle
+- `Funding Name`: N/A
+- `Course Title`: Open Source GIS (Middlebury College, Fall 2023)
+- `Award info URI`: N/A
+- `Award number`: N/A
 
 ## Related to
 
