@@ -105,6 +105,8 @@ Each of the next subsections describes one data source.
 
 ... same form as above...
 
+### Secondary Data Sources
+
 #### 2016_Contingent_Congressional_Plan_Corrected
 
 **Standard Metadata**
@@ -113,16 +115,16 @@ Each of the next subsections describes one data source.
 - `Spatial Coverage`: North Carolina, USA
 - `Spatial Resolution`: U.S. Congressional Districts
 - `Spatial Reference System`: 32119 NAD 1983 North Carolina
-- `Temporal Coverage`: Specify the temporal extent of your study---i.e. the range of time represented by the data observations.
+- `Temporal Coverage`: One election cycle
 - `Temporal Resolution`: 2016
 - `Lineage`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) and distributed by Professor Niwaeli Kimambo. It is unclear if further processing occured. 
 - `Distribution`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) under 'District Plans Enacted by the Court' > 'Enacted 2016'
 - `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
 - `Data Quality`: Quality unknown
-- `Variables`: For each variable, enter the following information. If you have two or more variables per data source, you may want to present this information in table form (shown below)
-  - `Label`: DISTRICT
-  - `Alias`: unique district number
-  - `Definition`: Short description or definition of the variable. Include measurement units in description.
+- `Variables`: 
+  - `Label`: District
+  - `Alias`: U.S. Congressional District
+  - `Definition`: unique district number
   - `Type`: int64
   - `Accuracy`: N/A
   - `Domain`: 1, 13
@@ -134,9 +136,62 @@ Each of the next subsections describes one data source.
 | variable1 | ... | ... | ... | ... | ... | ... | ... |
 | variable2 | ... | ... | ... | ... | ... | ... | ... |
 
-#### Secondary data source2 name
+#### C-Goodwin-A-1-TC
 
-... same form as above...
+**Standard Metadata**
+
+- `Abstract`: North Carolina Legislature's version of U.S. Congressional Districts in 2019. These districts were drawn after the 2016 districts were found to be partisan gerrymanders. 
+- `Spatial Coverage`: North Carolina, USA
+- `Spatial Resolution`: U.S. Congressional Districts
+- `Spatial Reference System`: 32119 NAD 1983 North Carolina
+- `Temporal Coverage`: One election cycle
+- `Temporal Resolution`: 2016
+- `Lineage`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) and distributed by Professor Niwaeli Kimambo. It is unclear if further processing occured. 
+- `Distribution`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) under 'District Plans Enacted by the Court' > 'Enacted 2019'
+- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
+- `Data Quality`: Quality unknown
+- `Variables`:
+  - `Label`: DISTRICT
+  - `Alias`: U.S. Congressional District
+  - `Definition`: unique district number
+  - `Type`: object
+  - `Accuracy`: N/A
+  - `Domain`: 1, 13
+  - `Missing Data Value(s)`: N/A
+  - `Missing Data Frequency`: N/A
+
+| Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| variable1 | ... | ... | ... | ... | ... | ... | ... |
+| variable2 | ... | ... | ... | ... | ... | ... | ... |
+
+#### C-Goodwin-A-1-TC
+
+**Standard Metadata**
+
+- `Abstract`: North Carolina Legislature's version of U.S. Congressional Districts in 2019. These districts were drawn after the 2016 districts were found to be partisan gerrymanders. 
+- `Spatial Coverage`: North Carolina, USA
+- `Spatial Resolution`: U.S. Congressional Districts
+- `Spatial Reference System`: 32119 NAD 1983 North Carolina
+- `Temporal Coverage`: One election cycle
+- `Temporal Resolution`: 2016
+- `Lineage`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) and distributed by Professor Niwaeli Kimambo. It is unclear if further processing occured. 
+- `Distribution`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) under 'District Plans Enacted by the Court' > 'Enacted 2019'
+- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
+- `Data Quality`: Quality unknown
+- `Variables`:
+  - `Label`: DISTRICT
+  - `Alias`: U.S. Congressional District
+  - `Definition`: unique district number
+  - `Type`: object
+  - `Accuracy`: N/A
+  - `Domain`: 1, 13
+  - `Missing Data Value(s)`: N/A
+  - `Missing Data Frequency`: N/A
+
+| Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| variable1 | ... | ... | ... | ... | ... | ... | ... |
 
 ### Prior observations  
 
