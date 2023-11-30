@@ -40,7 +40,7 @@ percentage votes for Republican presidential candidate by voting precinct, perce
 - `Award info URI`: N/A
 - `Award number`: N/A
 
-## Related to
+## Related to: N/A
 
 - `OSF Project`:
 - `Pre-analysis Registration`:
