@@ -21,7 +21,7 @@ Then, compactness scores are calculated by multiplying the area by 400π and div
 The deliverables include summary statistics for the compactness and percentage of Republicans from the 2026 and 2019 districts, as well as 4 maps: 
 percentage votes for Republican presidential candidate by voting precinct, percentage votes for the 2016 Republican presidential candidate by 2016 districts, percentage of votes for the 2016 Republican presidential candidate by 2019 districts, and the compactness scores for each 2016 and 2019 district.
 
-No changes to the study are planned at present.
+This replication shifts the computational environment from QGIS to Python. 
 
 
 ## Study Metadata

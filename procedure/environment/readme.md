@@ -9,4 +9,5 @@ For users of R, our template code, at a minimum, saves environment information u
 
 ## Set up instructions
 
-Researchers are encouraged to write instructions on setting up or accessing the computational environment for their study here.
+Fork and clone the [Rpr-120Lab-Gerrymandering Repository](https://github.com/gsokolow/Rpr-120Lab-Gerrymandering/tree/main).
+Open the repository in Anaconda Navigator or another Python environment and use version 3.11.5.

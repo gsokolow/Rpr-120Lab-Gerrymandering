@@ -18,7 +18,7 @@ Then, compactness scores are calculated by multiplying the area by 400π and div
 The deliverables include summary statistics for the compactness and percentage of Republicans from the 2026 and 2019 districts, as well as 4 maps: 
 percentage votes for Republican presidential candidate by voting precinct, percentage votes for the 2016 Republican presidential candidate by 2016 districts, percentage of votes for the 2016 Republican presidential candidate by 2019 districts, and the compactness scores for each 2016 and 2019 district.
 
-Several data layers are provided for the original lab, including the 2016 and 2019 congressional district maps and the 2016 North Carolina voting precints and presidential election data. I will develop the code for this study using the originally given data layers, but once I have it running I will attempt to download them directly from the internet to improve transparency and reproducibility. I will also archive copies of both the originally given data and the newly downloaded data.
+This replication shifts the computational environment from QGIS to Python. Several data layers are provided for the original lab, including the 2016 and 2019 congressional district maps and the 2016 North Carolina voting precints and presidential election data. I will develop the code for this study using the originally given data layers, but once I have it running I will attempt to download them directly from the internet to improve transparency and reproducibility. I will also archive copies of both the originally given data and the newly downloaded data.
 
 
 ## Study Metadata
@@ -53,7 +53,7 @@ N/A
 
 ### Computational environment
 
-This reproduction study uses Python 3. 
+This reproduction study uses Python 3.11.5. 
 All imported packages and versions can be found under /procedure/environment/requirements.txt.
 
 ### Data and variables
@@ -123,11 +123,11 @@ Each of the next subsections describes one data source.
   - `Label`: DISTRICT
   - `Alias`: unique district number
   - `Definition`: Short description or definition of the variable. Include measurement units in description.
-  - `Type`: data type, e.g. character string, integer, real
-  - `Accuracy`: e.g. uncertainty of measurements
-  - `Domain`: Range (Maximum and Minimum) of numerical data, or codes or categories of nominal data, or reference to a standard codebook
-  - `Missing Data Value(s)`: Values used to represent missing data and frequency of missing data observations
-  - `Missing Data Frequency`: Frequency of missing data observations
+  - `Type`: int64
+  - `Accuracy`: N/A
+  - `Domain`: 1, 13
+  - `Missing Data Value(s)`: N/A
+  - `Missing Data Frequency`: N/A
 
 | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
