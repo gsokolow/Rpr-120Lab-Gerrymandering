@@ -1,0 +1,20 @@
+,name,new name,label
+70,DP05_0070,total_pop,Estimate!!HISPANIC OR LATINO AND RACE!!Total population
+71,DP05_0071,latinx,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Hispanic or Latino (of any race)
+72,DP05_0072,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Hispanic or Latino (of any race)!!Mexican
+73,DP05_0073,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Hispanic or Latino (of any race)!!Puerto Rican
+74,DP05_0074,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Hispanic or Latino (of any race)!!Cuban
+75,DP05_0075,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Hispanic or Latino (of any race)!!Other Hispanic or Latino
+76,DP05_0076,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino
+77,DP05_0077,white,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!White alone
+78,DP05_0078,black,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Black or African American alone
+79,DP05_0079,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!American Indian and Alaska Native alone
+80,DP05_0080,asian,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Asian alone
+81,DP05_0081,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Native Hawaiian and Other Pacific Islander alone
+82,DP05_0082,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Some other race alone
+83,DP05_0083,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Two or more races
+84,DP05_0084,,Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Two or more races!!Two races including Some other race
+85,DP05_0085,,"Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Two or more races!!Two races excluding Some other race, and Three or more races"
+87,DP05_0087,,"Estimate!!CITIZEN, VOTING AGE POPULATION!!Citizen, 18 and over population"
+88,DP05_0088,,"Estimate!!CITIZEN, VOTING AGE POPULATION!!Citizen, 18 and over population!!Male"
+89,DP05_0089,citizen18yr,"Estimate!!CITIZEN, VOTING AGE POPULATION!!Citizen, 18 and over population!!Female"

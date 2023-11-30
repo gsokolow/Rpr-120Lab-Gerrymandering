@@ -110,18 +110,18 @@ Each of the next subsections describes one data source.
 **Standard Metadata**
 
 - `Abstract`: North Carolina Legislature's version of U.S. Congressional Districts in 2016. These districts were drawn after the Supreme Court found their 2011 districts to be an illegal racial gerrymander. 
-- `Spatial Coverage`: Specify the geographic extent of your study. This may be a place name and link to a feature in a gazetteer like GeoNames or OpenStreetMap, or a well known text (WKT) representation of a bounding box.
-- `Spatial Resolution`: Specify the spatial resolution as a scale factor, description of the level of detail of each unit of observation (including administrative level of administrative areas), and/or or distance of a raster GRID size
-- `Spatial Reference System`: Specify the geographic or projected coordinate system for the study
+- `Spatial Coverage`: North Carolina, USA
+- `Spatial Resolution`: U.S. Congressional Districts
+- `Spatial Reference System`: 32119 NAD 1983 North Carolina
 - `Temporal Coverage`: Specify the temporal extent of your study---i.e. the range of time represented by the data observations.
-- `Temporal Resolution`: Specify the temporal resolution of your study---i.e. the duration of time for which each observation represents or the revisit period for repeated observations
-- `Lineage`: Describe and/or cite data sources and/or methodological steps used to create this data source
-- `Distribution`: Describe how the data is distributed, including any persistent identifier (e.g. DOI) or URL for data access
-- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*
-- `Data Quality`: State result of quality assessment or state "Quality unknown"
+- `Temporal Resolution`: 2016
+- `Lineage`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) and distributed by Professor Niwaeli Kimambo. It is unclear if further processing occured. 
+- `Distribution`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) under 'District Plans Enacted by the Court' > 'Enacted 2016'
+- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
+- `Data Quality`: Quality unknown
 - `Variables`: For each variable, enter the following information. If you have two or more variables per data source, you may want to present this information in table form (shown below)
-  - `Label`: variable name as used in the data or code
-  - `Alias`: intuitive natural language name
+  - `Label`: DISTRICT
+  - `Alias`: unique district number
   - `Definition`: Short description or definition of the variable. Include measurement units in description.
   - `Type`: data type, e.g. character string, integer, real
   - `Accuracy`: e.g. uncertainty of measurements
