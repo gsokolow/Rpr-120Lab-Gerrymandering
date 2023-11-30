@@ -2,62 +2,59 @@
 
 ### Authors
 
-- First Name Last Name\*, email address, @githubname, ORCID link, affiliated institution(s)
-- First Name Last Name, email address, @githubname, ORCID link, affiliated institution(s)
+- Grace Sokolow\*, gsokolow@middlebury.edu, @gsokolow, Middlebury College (Undergraduate)
 
 \* Corresponding author and creator
 
-### Abstract
+## Abstract
 
-Write a brief abstract about your research project.
+This study is a *reproduction/replication* of:
 
-If the project is a reproduction or replication study, include a declaration of the study type with a full reference to the original study.
-For example:
+> Kimambo, Niwaeli. 2021. *Lec/Lab: Gerrymandering: Maps and political representation* Human Geography with GIS (GEOG 120) at Middlebury College.
 
-This study is a *replication* of:
+The original lab aims to determine whether North Carolina's 2019 congressional districts, which were redrawn by court order, are fairer than the 2016 districts based on geographic compactness and political representation.
+First, votes cast in the 2016 presidential election are used to estimate the percentage of Republican voters in the 2016 and 2019 congressional districts.
+Then, compactness scores are calculated by multiplying the area by 400π and dividing by the perimeter squared.
+The deliverables include summary statistics for the compactness and percentage of Republicans from the 2026 and 2019 districts, as well as 4 maps: 
+percentage votes for Republican presidential candidate by voting precinct, percentage votes for the 2016 Republican presidential candidate by 2016 districts, percentage of votes for the 2016 Republican presidential candidate by 2019 districts, and the compactness scores for each 2016 and 2019 district.
 
-> citation to prior study
+Several data layers are provided for the original lab, including the 2016 and 2019 congressional district maps and the 2016 North Carolina voting precints and presidential election data. I will develop the code for this study using the originally given data layers, but once I have it running I will attempt to download them directly from the internet to improve transparency and reproducibility. I will also archive copies of both the originally given data and the newly downloaded data.
 
-A graphical abstract of the study could also be included as an image here.
 
-### Study metadata
+## Study Metadata
 
-- `Key words`: Comma-separated list of keywords (tags) for searchability. Geographers often use one or two keywords each for: theory, geographic context, and methods.
-- `Subject`: select from the [BePress Taxonomy](http://digitalcommons.bepress.com/cgi/viewcontent.cgi?article=1008&context=reference)
-- `Date created`: date when project was started
-- `Date modified`: date of most recent revision
-- `Spatial Coverage`: Specify the geographic extent of your study. This may be a place name and link to a feature in a gazetteer like GeoNames or OpenStreetMap, or a well known text (WKT) representation of a bounding box.
-- `Spatial Resolution`: Specify the spatial resolution as a scale factor, description of the level of detail of each unit of observation (including administrative level of administrative areas), and/or or distance of a raster GRID size
-- `Spatial Reference System`: Specify the geographic or projected coordinate system for the study, e.g. EPSG:4326
-- `Temporal Coverage`: Specify the temporal extent of your study---i.e. the range of time represented by the data observations.
-- `Temporal Resolution`: Specify the temporal resolution of your study---i.e. the duration of time for which each observation represents or the revisit period for repeated observations
-- `Funding Name`: name of funding for the project
-- `Funding Title`: title of project grant
-- `Award info URI`: web address for award information
-- `Award number`: award number
+- `Key words`: gerrymandering, north carolina, area weighted reaggregation, 2016 elections, congressional redistricting
+- `Subject`: Social and Behavioral Sciences: Geography
+- `Date created`: November 30, 2023
+- `Date modified`: November 30, 2023
+- `Funding Name`: N/A
+- `Course Title`: Open Source GIS (Middlebury College, Fall 2023)
+- `Award info URI`: N/A
+- `Award number`: N/A
+
 
 #### Original study spatio-temporal metadata
 
-- `Spatial Coverage`: extent of original study
-- `Spatial Resolution`: resolution of original study
-- `Spatial Reference System`: spatial reference system of original study
-- `Temporal Coverage`: temporal extent of original study
-- `Temporal Resolution`: temporal resolution of original study
+-  `Spatial Coverage`: North Carolina, USA.
+- `Spatial Resolution`: Congressional districts, voting precincts
+- `Spatial Reference System`: 32119 NAD 1983 North Carolina
+- `Temporal Coverage`: [2016](https://www.ncleg.gov/Redistricting/DistrictPlanMap/C2016E) - [2019](https://www.ncleg.gov/Redistricting/DistrictPlanMap/C2019E)
+- `Temporal Resolution`: One election cycle
+
 
 ## Study design
 
-Describe how the study relates to prior literature, e.g. is it a **original study**, **meta-analysis study**, **reproduction study**, **reanalysis study**, or **replication study**?
+This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned prior to getting the lab up and running in python. 
 
-Also describe the original study archetype, e.g. is it **observational**, **experimental**, **quasi-experimental**, or **exploratory**?
-
-Enumerate specific **hypotheses** to be tested or **research questions** to be investigated here, and specify the type of method, statistical test or model to be used on the hypothesis or question.
+Kimambo's original lab is an observational study of partisan gerrymandering in North Carolina. It aims to determine if the court-ordered redistricting of North Carolina's 2016 districts resulted in districts that were more fair in terms of geographic compactness and political representation. An area weighted reaggregation is used to allocate votes for the Republican presidential candidate in 2016 to North Carolina's 2016 and 2019 congressonal districts. To calculate compactness for each district, the following equation is used: compactness = 400 * π * area / perimeter^2.
 
 ## Materials and procedure
+N/A
 
 ### Computational environment
 
-Define the hardware, operating system, and software requirements for the research.
-Include citations to important software projects, plugins or packages and their versions.
+This reproduction study uses Python 3. 
+All imported packages and versions can be found under /procedure/environment/requirements.txt.
 
 ### Data and variables
 
@@ -108,11 +105,11 @@ Each of the next subsections describes one data source.
 
 ... same form as above...
 
-#### Secondary data source1 name
+#### 2016_Contingent_Congressional_Plan_Corrected
 
 **Standard Metadata**
 
-- `Abstract`: Brief description of the data source
+- `Abstract`: North Carolina Legislature's version of U.S. Congressional Districts in 2016. These districts were drawn after the Supreme Court found their 2011 districts to be an illegal racial gerrymander. 
 - `Spatial Coverage`: Specify the geographic extent of your study. This may be a place name and link to a feature in a gazetteer like GeoNames or OpenStreetMap, or a well known text (WKT) representation of a bounding box.
 - `Spatial Resolution`: Specify the spatial resolution as a scale factor, description of the level of detail of each unit of observation (including administrative level of administrative areas), and/or or distance of a raster GRID size
 - `Spatial Reference System`: Specify the geographic or projected coordinate system for the study

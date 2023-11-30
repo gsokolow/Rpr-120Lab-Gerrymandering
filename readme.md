@@ -11,8 +11,6 @@ If you use this template for research, please [cite it](template_reference.bib):
 
 ## Abstract
 
-Write a brief abstract about your research project.
-If the project is a reproduction or replication study, include the full citation with a statement
 This study is a *reproduction/replication* of:
 
 > Kimambo, Niwaeli. 2021. *Lec/Lab: Gerrymandering: Maps and political representation* Human Geography with GIS (GEOG 120) at Middlebury College.
@@ -20,8 +18,10 @@ This study is a *reproduction/replication* of:
 The original lab aims to determine whether North Carolina's 2019 congressional districts, which were redrawn by court order, are fairer than the 2016 districts based on geographic compactness and political representation.
 First, votes cast in the 2016 presidential election are used to estimate the percentage of Republican voters in the 2016 and 2019 congressional districts.
 Then, compactness scores are calculated by multiplying the area by 400π and dividing by the perimeter squared.
-The devliverables include summary statistics for the compactness and percentage of Republicans from the 2026 and 2019 districts, as well as 4 maps: 
+The deliverables include summary statistics for the compactness and percentage of Republicans from the 2026 and 2019 districts, as well as 4 maps: 
 percentage votes for Republican presidential candidate by voting precinct, percentage votes for the 2016 Republican presidential candidate by 2016 districts, percentage of votes for the 2016 Republican presidential candidate by 2019 districts, and the compactness scores for each 2016 and 2019 district.
+
+No changes to the study are planned at present.
 
 
 ## Study Metadata
@@ -32,7 +32,7 @@ percentage votes for Republican presidential candidate by voting precinct, perce
 - `Date modified`: November 30, 2023
 - `Spatial Coverage`: North Carolina, USA.
 - `Spatial Resolution`: Congressional districts, voting precincts
-- `Spatial Reference System`: [SPCS "default" NC (Lambert Conformal Conic 1-parallel)](https://ncgs.state.nc.us/docs/2022_Datum_WG_June_2018_2.pdf)
+- `Spatial Reference System`: 32119 NAD 1983 North Carolina
 - `Temporal Coverage`: [2016](https://www.ncleg.gov/Redistricting/DistrictPlanMap/C2016E) - [2019](https://www.ncleg.gov/Redistricting/DistrictPlanMap/C2019E)
 - `Temporal Resolution`: One election cycle
 - `Funding Name`: N/A
