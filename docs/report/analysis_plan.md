@@ -49,6 +49,7 @@ This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned p
 Kimambo's original lab is an observational study of partisan gerrymandering in North Carolina. It aims to determine if the court-ordered redistricting of North Carolina's 2016 districts resulted in districts that were more fair in terms of geographic compactness and political representation. An area weighted reaggregation is used to allocate votes for the Republican presidential candidate in 2016 to North Carolina's 2016 and 2019 congressonal districts. To calculate compactness for each district, the following equation is used: compactness = 400 * π * area / perimeter^2.
 
 ## Materials and procedure
+
 N/A
 
 ### Computational environment
@@ -58,56 +59,13 @@ All imported packages and versions can be found under /procedure/environment/req
 
 ### Data and variables
 
-Describe the **data sources** and **variables** to be used.
-Data sources may include plans for observing and recording **primary data** or descriptions of **secondary data**.
-For secondary data sources with numerous variables, the analysis plan authors may focus on documenting only the variables intended for use in the study.
-
-Primary data sources for the study are to include ... .
-Secondary data sources for the study are to include ... .
-
-Each of the next subsections describes one data source.
-
-#### Primary data source1 name
-
-**Standard Metadata**
-
-- `Abstract`: Brief description of the data source
-- `Spatial Coverage`: Specify the geographic extent of your study. This may be a place name and link to a feature in a gazetteer like GeoNames or OpenStreetMap, or a well known text (WKT) representation of a bounding box.
-- `Spatial Resolution`: Specify the spatial resolution as a scale factor, description of the level of detail of each unit of observation (including administrative level of administrative areas), and/or or distance of a raster GRID size
-- `Spatial Reference System`: Specify the geographic or projected coordinate system for the study
-- `Temporal Coverage`: Specify the temporal extent of your study---i.e. the range of time represented by the data observations.
-- `Temporal Resolution`: Specify the temporal resolution of your study---i.e. the duration of time for which each observation represents or the revisit period for repeated observations
-- `Lineage`: Describe and/or cite data sources and/or methodological steps planned to create this data source.
-  - sampling scheme, including spatial sampling
-  - target sample size and method for determining sample size
-  - stopping criteria for data collection and sampling (e.g. sample size, time elapsed)
-  - de-identification / anonymization
-  - experimental manipulation
-- `Distribution`: Describe who will make the data available and how?
-- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*
-- `Data Quality`: State any planned quality assessment
-- `Variables`: For each variable, enter the following information. If you have two or more variables per data source, you may want to present this information in table form (shown below)
-  - `Label`: variable name as used in the data or code
-  - `Alias`: intuitive natural language name
-  - `Definition`: Short description or definition of the variable. Include measurement units in description.
-  - `Type`: data type, e.g. character string, integer, real
-  - `Accuracy`: e.g. uncertainty of measurements
-  - `Domain`: Expected range of Maximum and Minimum of numerical data, or codes or categories of nominal data, or reference to a standard codebook
-  - `Missing Data Value(s)`: Values used to represent missing data and frequency of missing data observations
-  - `Missing Data Frequency`: Frequency of missing data observations: not yet known for data to be collected
-
-| Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| variable1 | ... | ... | ... | ... | ... | ... | ... |
-| variable2 | ... | ... | ... | ... | ... | ... | ... |
-
-#### Primary data source2 name
-
-... same form as above...
+There are two sets of data used in this replication study: the original files given with the lab, and the newly downloaded files added for improved reproducibility. 
+The newly downloaded files *should* contain the same information as the original givens. 
+All data sources are secondary.
 
 ### Secondary Data Sources
 
-#### 2016_Contingent_Congressional_Plan_Corrected
+#### 2016_Contingent_Congressional_Plan_Corrected.shp
 
 **Standard Metadata**
 
@@ -131,12 +89,7 @@ Each of the next subsections describes one data source.
   - `Missing Data Value(s)`: N/A
   - `Missing Data Frequency`: N/A
 
-| Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| variable1 | ... | ... | ... | ... | ... | ... | ... |
-| variable2 | ... | ... | ... | ... | ... | ... | ... |
-
-#### C-Goodwin-A-1-TC
+#### C-Goodwin-A-1-TC.shp
 
 **Standard Metadata**
 
@@ -145,7 +98,7 @@ Each of the next subsections describes one data source.
 - `Spatial Resolution`: U.S. Congressional Districts
 - `Spatial Reference System`: 32119 NAD 1983 North Carolina
 - `Temporal Coverage`: One election cycle
-- `Temporal Resolution`: 2016
+- `Temporal Resolution`: 2019
 - `Lineage`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) and distributed by Professor Niwaeli Kimambo. It is unclear if further processing occured. 
 - `Distribution`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) under 'District Plans Enacted by the Court' > 'Enacted 2019'
 - `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
@@ -160,38 +113,29 @@ Each of the next subsections describes one data source.
   - `Missing Data Value(s)`: N/A
   - `Missing Data Frequency`: N/A
 
-| Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| variable1 | ... | ... | ... | ... | ... | ... | ... |
-| variable2 | ... | ... | ... | ... | ... | ... | ... |
-
-#### C-Goodwin-A-1-TC
+#### precincts.shp
 
 **Standard Metadata**
 
-- `Abstract`: North Carolina Legislature's version of U.S. Congressional Districts in 2019. These districts were drawn after the 2016 districts were found to be partisan gerrymanders. 
+- `Abstract`: North Carolina voting precincts from 2016. 
 - `Spatial Coverage`: North Carolina, USA
-- `Spatial Resolution`: U.S. Congressional Districts
-- `Spatial Reference System`: 32119 NAD 1983 North Carolina
+- `Spatial Resolution`: Voting precincts
+- `Spatial Reference System`: 4269 North American Datum 1983
 - `Temporal Coverage`: One election cycle
 - `Temporal Resolution`: 2016
-- `Lineage`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) and distributed by Professor Niwaeli Kimambo. It is unclear if further processing occured. 
-- `Distribution`: Retrieved from the [North Carolina General Assembly](https://www.ncleg.gov/Redistricting) under 'District Plans Enacted by the Court' > 'Enacted 2019'
+- `Lineage`: Retrieved from the North Carolina State Board of Elections; [precinct shapefiles](https://www.ncsbe.gov/results-data/voting-maps-redistricting), [tabular voting results](https://er.ncsbe.gov/downloads.html) and distributed by Professor Niwaeli Kimambo. The two data sources appear to have been joined but further information about how is unavailable. 
+- `Distribution`: Retrieved from the North Carolina State Board of Elections; [precinct shapefiles](https://www.ncsbe.gov/results-data/voting-maps-redistricting) at Geospatial Files > Precinct Files > Precinct Shapefiles (folder) > SBE_PRECINCTS_20161004.zip; [tabular voting results](https://er.ncsbe.gov/downloads.html) under 11/08/2016
 - `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
 - `Data Quality`: Quality unknown
 - `Variables`:
-  - `Label`: DISTRICT
-  - `Alias`: U.S. Congressional District
-  - `Definition`: unique district number
-  - `Type`: object
-  - `Accuracy`: N/A
-  - `Domain`: 1, 13
-  - `Missing Data Value(s)`: N/A
-  - `Missing Data Frequency`: N/A
 
 | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| variable1 | ... | ... | ... | ... | ... | ... | ... |
+| PREC_ID | Precinct_ID | precinct id| object | N/A | N/A | N/A | N/A |
+| COUNTY_NAM | county name| precinct county name | object | N/A | N/A | N/A | N/A |
+| dem | democratic votes | votes for Democratic Party candidate in 2016 presidential election | int64 | N/A | 1, 4979 | N/A | N/A |
+| rep | republican votes | votes for Republican Party candidate in 2016 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
+| cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
 
 ### Prior observations  
 
