@@ -142,31 +142,39 @@ All data sources are secondary.
 Prior experience with the study area, prior data collection, or prior observation of the data can compromise the validity of a study, e.g. through p-hacking.
 Therefore, disclose any prior experience or observations at the time of study pre-registration here, with example text below:
 
-At the time of this study pre-registration, the authors had _____ prior knowledge of the geography of the study region with regards to the ____ phenomena to be studied.
-This study is related to ____ prior studies by the authors
+At the time of this study pre-registration, the author had prior experience with this data having worked through the original lab problem as a student in 2021. During the summer of 2022, the author was a participant at the Spatial Modeling of Electoral Redistricting REU at the University of Puget Sound, where she studied gerrymandering and worked closely with spatial measures including but not limited to compactness scores. The study area for that reseatch was the entire United States and thus included North Carolina. 
 
-For each primary data source, declare the extent to which authors had already engaged with the data:
 
-- [ ] no data collection has started
-- [ ] pilot test data has been collected
-- [ ] data collection is in progress and data has not been observed
-- [ ] data collection is in progress and __% of data has been observed
-- [ ] data collection is complete and data has been observed. Explain how authors have already manipulated / explored the data.
 
 For each secondary source, declare the extent to which authors had already engaged with the data:
+
+For the three given datasets (2016_Contingent_Congressional_Plan_Corrected.shp; C-Goodwin-A-1-TC.shp; precincts.shp), the author has observed the full dataset through the original completion of the lab in fall 2021. 
+
+For the three newly downloaded files, the data is available, but only metadata has been observed (following the sources listed in the original lab). 
 
 - [ ] data is not available yet
 - [ ] data is available, but only metadata has been observed
 - [ ] metadata and descriptive statistics have been observed
 - [ ] metadata and a pilot test subset or sample of the full dataset have been observed
 - [ ] the full dataset has been observed. Explain how authors have already manipulated / explored the data.
-
-If pilot test data has been collected or acquired, describe how the researchers observed and analyzed the pilot test, and the extent to which the pilot test influenced the research design.
+        
 
 ### Bias and threats to validity
 
 Given the research design and primary data to be collected and/or secondary data to be used, discuss common threats to validity and the approach to mitigating those threats, with an emphasis on geographic threats to validity.
 
+The original study being replicated is a lab used in Human Geography with GIS, an introductory level vector GIS course at Middlebury College. Thus, the lab has been simplified and makes several stated assumptions:
+    1. *We are simplifying voting results as votes cast at a polling station for the Democratic (dem) or Republican (rep) candidate for president in 2016.*
+    This presents several threats to validity. First, using votes from a presidential election as a proxy for votes cast in a congressional election can be misleading because some voters, especially in swing states like North Carolina, might vote for a candidate from one party in the presidential election and another in a congressional race. This may be particularly relevant for the 2016 presidential election, which was a contest between two extremely polarizing figures: Hillary Clinton (Dem) and Donald Trump (Rep). This strategy also ignores votes cast for independent or write in candidates in the presidential election, thereby not assigning them to a congressional vote party (which would admittedly, be quite difficult), as well as independent or write in candidates in congressional elections, who get no votes attributed to them because of the simplified two party model. However, for the purposes of teaching GIS to beginning researchers, this is a logical simplification. One way to investigate this threat to validity might be to compare the predicted party winner in each district with the party of the serving Congressmember. However, this will not be undertaken in this replication study. 
+    2. *We are assuming that voters are evenly distributed throughout voting precincts.*
+    The original study uses area-weighted re-aggregation to assign votes cast in presidential voting precincts to congressional districts based on the percentage of precinct area contained by a given congressional district. This assumes that voters for both parties are evenly distributed throughout the precincts. However, there are multiple possible scenarios in which this would not be the case. For example, the distribution of votes for each party may be evenly distributed throughout the voting population in a given precinct, while the population itself may not be evenly distributed spatially. This could result in the assignment of votes cast in one district to a neighboring district in the same precinct, thereby inflating the vote count in one and decreasing it in another. Depending on the makeup of the voters, this could change the make-up of the voter base in effected districts. Similarly, the opposite scenario could be true: voters might be evenly distributed spatially in the precinct, but their votes aren't. For example, there might be a precinct with a very democratic area and a very republican area. The methodology used in this paper would blend these two areas together and proportionally assign partisan voters to congressional district, which also runs the risk of changing the voter composition in effected districts. And the two are not mutually exclusive. Voters may be unevenly distributed both spatially and politically. In fact, this might be the most likely scenario, as democratic voters tend to be clustered in cities and republican voters in more rural areas. 
+    Area weighted reaggregation already aims to address the modifiable areal unit problem, where the scale of analysis significantly influences the results. However, it is an imperfect method. One way to improve this analysis further might be to create a population gradient based on census block or block group population data such that a population based weighted re-aggregation might be implemented. However, this improvement would only be able to address the uneven spatial distribution of voters and not the uneven political distribution. Even if this population gradient was not used to make an alternate weighted re-aggregation, it might be useful in at least identifying congressional districts that may have been effected by this threat to validity. However, this methodological change will not be implemented in this reproduction study. 
+    3. *Additionally (not originally stated), using a compactness score as a proxy for electoral fairness may be impacted by boundary effects.*
+    Compactness scores in general compare the perimeter of a given polygon to its area. The formula used in the original study essentially compares the district to how circular it is, such that a very circular district would be considered the most fair. Identifying gerrymandering is, as exemplified by the countless courtcases and ongoing discourse, an inherently difficult thing to define. So, the measure of compactness begs the question, what is the geometry of the ideal district? Whatever the answer to that question, measures of compactness are designed to flag districts with long, snaky, or complex borders. However, this means they may also flag otherwise 'compact' districts that have complex borders due to geographic features such as coastlines, islands, or rivers. In this case, the complexity of the border is not indicative of gerrymandering per se, but merely the physical reality of the landscape. Some congressional maps may be drawn with borders that extend into the sea, for example, and are thus more simple than if they hugged the coastline, but this varies by map and is not always possible. 
+    *** picking up here -> anything done to mitigate this?
+    *** also the failure to pick up cracking v packing
+    
+    
 These include:
   - uneven primary data collection due to geographic inaccessibility or other constraints
   - multiple hypothesis testing
