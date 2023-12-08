@@ -65,6 +65,7 @@ All data sources are secondary.
 
 ### Secondary Data Sources
 
+### Raw Data
 #### 2016_Contingent_Congressional_Plan_Corrected.shp
 
 **Standard Metadata**
@@ -137,6 +138,17 @@ All data sources are secondary.
 | rep | republican votes | votes for Republican Party candidate in 2016 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
 | cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
 
+### Generated final files
+
+#### Export Grouped_Districts_2016.xlsx
+
+#### Export as D_awr_2016.shp
+
+
+* p area
+* f area  = new varsss
+
+
 ### Prior observations  
 
 Prior experience with the study area, prior data collection, or prior observation of the data can compromise the validity of a study, e.g. through p-hacking.
@@ -177,13 +189,6 @@ The original study being replicated is a lab used in Human Geography with GIS, a
     By using compactness to identify potential gerrymanders, we run the risk of false positives: districts idendified as having a compactness score indicative of gerrymandering, when their may not be an observable difference in voter makeup whether the district is more compact or not. This is one manifestation of an edge effect; in which the state of the region bordering the study region influences the results attributed to that reason. Joe Holler, Assistant Professor of Geography at Middlebury College, has suggested that the area weighted reaggregation of voters from the 2016 presidential election to the 2016 and 2019 congressional districts could be expanded so that in addition to calculating the likely voter base in each district, one would also calculate the likely voter base in the 'minimum bounding circle' of each district from each year. Comparing the predicted election results for congressional districts with the predicted election results of the corresponding minimum bounding circle would help identify the districts in which compactness is a driving factor of election results (and thus a stronger indicator of a potential gerrymander). This additional analysis could help identify both instances of packing and cracking, though it is outside the scope of this reproduction study.
     
     
-    
-    
-    
-   
-    *** also the failure to pick up cracking v packing
-    
-    
 These include:
   - uneven primary data collection due to geographic inaccessibility or other constraints
   - multiple hypothesis testing
@@ -212,6 +217,42 @@ Examples of **geographic** transformations include coordinate system transformat
 Examples of **variable** transformations include standardization, normalization, constructed variables, imputation, classification, etc.
 
 Be sure to include any steps planned to **exclude** observations with *missing* or *outlier* data, to **group** observations by *attribute* or *geographic* criteria, or to **impute** missing data or apply spatial or temporal **interpolation**.
+
+Steps are based on my personal original solution to this lab from Fall 2021. Note that they are presented in terms of QGIS but the python equivalent will can be found in 01-Jupyter_notebook.ipynb. 
+
+First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d and C-Goodwin-A-1-TC.shp to 2019_d for clarity.
+
+#### 2016 Districts
+1. **geographic** Reproject precincts dataset to CRS: 32119 NAD 1983 North Carolina -> precincts_nad
+2. **geographic** Fix precinct_nad geometries -> precincts_fix
+3. **variable** New field pArea (*type: float64*\*): Calculate goedsic/ellipsoidal area of geometry in precincts_fix (as opposed to based on the CRS; see [QGIS helpdocs](https://gis.stackexchange.com/questions/347249/using-area-or-area-function-in-qgis-when-the-data-polygon-is-stored-in-utm) for more info on $area v area(); in this case, $area used) -> precincts_area
+4. **variable** New field pctRep (*type: float64*\*) : Calculate the percentage of votes cast in each precinct for the republican presidential candidate in 2016 -> precincts_area (variable name can stay the same; just adding a field)
+5. **geographic** Union: input = precincts_area; overlay = 2016_d -> 2016_fragments
+6. **variable** New field fArea (*type: float64*\*): Calculate goedsic/ellipsoidal area of geometry in 2016_fragments
+7. **variable** New field aw (*type: float64*\*): For each fragement (precinct + district combination), calculate the proportion of the fragment present in each precinct (this determines the proportion of precinct votes allocated to each fragment) = 'fArea'/'pArea' -> 2016_fragments (variable name can stay the same, as we are just adding new fields)
+8. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> 2016_fragment
+9. **variable** New field awRep (*type: float64*\*): Calculate the proportion of republican votes (from the precinct) to be allocated to each fragement = 'rep' * 'aw' -> 2016_fragment
+10. **group by attribute** Group 2016_fragments by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> **Export as Grouped_Districts_2016.xlsx**
+11. **join by attribute** Join Grouped_Districts_2016.xlsx (input layer 2) to 2016_d (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2016
+12. **variable** New field pctDRep (*type: float64*\*): Calculate the percentage of republican votes in each district = 'sumawrep' / ('sumawRep + 'sumawDem') -> D_awr_2016
+13. **variable** New field dPerim (*type: float64*\*): Calculate the planimetric perimeter of the district (based on the projection; perim($geom)) -> D_awr_2016
+14. **variable** New field dArea (*type: float64*\*): Calculate the planimetric area of the district (based on the projection; area($geom)) -> D_awr_2016
+15. **variable** New field dCompact (*type: float64*\*): Calculate compactness using the equation given in the lab = (400 * π * 'dArea')/(dPerim^2) -> **Export as D_awr_2016.shp**
+16. **variable** Create new dataframe -> summary_stats
+17. **variable** New variable 2016_pct_min (*type: float64*\*): Calculate the minimum percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
+18. **variable** New variable 2016_pct_mean (*type: float64*\*): Calculate the mean percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
+19. **variable** New variable 2016_pct_max (*type: float64*\*): Calculate the maximum percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
+20. **variable** New variable 2016_compactness_min (*type: float64*\*): Calculate the minimum compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
+20. **variable** New variable 2016_compactness_mean (*type: float64*\*): Calculate the mean compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
+20. **variable** New variable 2016_compactness_max (*type: float64*\*): Calculate the maximum compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
+
+#### 2019 Districts
+
+
+
+
+
+\* **Deviation from original study:** that the original form of area field was decimal with unspecified precision; the aw field has a specified precision of 6. By default, geopandas' area calculator works in float 64 and that is what is used in this analysis.
 
 ### Analysis
 
