@@ -327,7 +327,8 @@ Be sure to include any steps planned to **exclude** observations with *missing* 
 
 Steps are based on my personal original solution to this lab from Fall 2021. Note that they are presented in terms of QGIS but the python equivalent will can be found in 01-Jupyter_notebook.ipynb. 
 
-First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016 and C-Goodwin-A-1-TC.shp to cd_2019 for clarity. Precincts.shp will become pc2016.
+First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016 and C-Goodwin-A-1-TC.shp to cd_2019 for clarity. Precincts.shp will become pc2016. 
+**Deviation from analysis plan:** Not every variable name outlined here is used in the analysis, but changes are explianed in the code. This is for clarity and efficiency's sake.
 
 #### 2016 Districts
 1. **geographic** Reproject precincts dataset to CRS: 32119 NAD 1983 North Carolina -> precincts_nad
@@ -335,6 +336,7 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016
 3. **variable** New field pArea (*type: float64*\*): Calculate goedsic/ellipsoidal area of geometry in precincts_fix (as opposed to based on the CRS; see [QGIS helpdocs](https://gis.stackexchange.com/questions/347249/using-area-or-area-function-in-qgis-when-the-data-polygon-is-stored-in-utm) for more info on $area v area(); in this case, $area used) -> precincts_area
 4. **variable** New field pctRep (*type: float64*\*) : Calculate the percentage of votes cast in each precinct for the republican presidential candidate in 2016 -> precincts_area (variable name can stay the same; just adding a field)
 5. **geographic** Union: input = precincts_area; overlay = cd_2016 -> frag_2016
+**Deviation from analysis plan:** This union takes a long time to run, so export as Union_2016_precincts_2016_districts.shp and read back in
 6. **variable** New field fArea (*type: float64*\*): Calculate goedsic/ellipsoidal area of geometry in frag_2016
 7. **variable** New field aw (*type: float64*\*): For each fragment (precinct + district combination), calculate the proportion of the precinct contained by the fragment (this determines the proportion of precinct votes allocated to each fragment) = 'fArea'/'pArea' -> frag_2016 (variable name can stay the same, as we are just adding new fields)
 8. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> frag_2016
@@ -355,6 +357,7 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016
 
 #### 2019 Districts
 1. **geographic** Union: input = precincts_area; overlay = cd_2019 -> frag_2019 (note that precincts_area is created in steps 1-4 in 2016 District transformations and does not change across years)
+**Deviation from analysis plan:** This union takes a long time to run, so export as Union_2016_precincts_2016_districts.shp and read back in
 2. **variable** New field fArea (*type: float64*\*): Calculate goedsic/ellipsoidal area of geometry in frag_2019
 3. **variable** New field aw (*type: float64*\*): For each fragment (precinct + district combination), calculate the proportion of the precinct contained by the fragment (this determines the proportion of precinct votes allocated to each fragment) = 'fArea'/'pArea' -> frag_2019 (variable name can stay the same, as we are just adding new fields)
 4. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> frag_2019
