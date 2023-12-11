@@ -167,7 +167,7 @@ All data sources are secondary.
 
 ### Generated final files
 **** !!!! be sure to come back and add the domain of the exported files **** 
-#### Export Grouped_Districts_2016.xlsx
+#### Grouped_Districts_2016.xlsx
 - `Abstract`: Area weighted reaggregation of 2016 presidential votes in North Carolina's U.S. Congressional Districts in 2016 without geometry
 - `Spatial Coverage`: No geometry
 - `Spatial Resolution`: No geometry
@@ -194,7 +194,7 @@ All data sources are secondary.
 | awDem | area weighted democratic votes | number of votes for the 2016 democratic presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
 | awRep | area weighted republican votes | number of votes for the 2016 republican presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
 
-#### Export as D_awr_2016.shp
+#### D_awr_2016.shp
 - `Abstract`: Area weighted reaggregation of 2016 presidential votes in North Carolina's U.S. Congressional Districts in 2016 with geometry, predicted election results, and compactness scores
 - `Spatial Coverage`: North Carolina, USA
 - `Spatial Resolution`: U.S. Congressional Districts
@@ -221,6 +221,64 @@ All data sources are secondary.
 | awDem | area weighted democratic votes | number of votes for the 2016 democratic presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
 | awRep | area weighted republican votes | number of votes for the 2016 republican presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
 | pctDRep | percentage of republican votes by district | percentage of votes for the 2016 republican presidential candidate in each district | float64 | N/A | not yet known | N/A | N/A |
+| dPerim | district perimeter | planimetric district perimeter | float64 | N/A | not yet known | N/A | N/A |
+| dArea | district area | planimetric district perimeter | float64 | N/A | not yet known | N/A | N/A |
+| dCompact | district compactness score | district compactness score = (400*π*dArea)/(dPerim^2) | float64 | N/A | not yet known | N/A | N/A |
+
+#### Grouped_Districts_2019.xlsx
+- `Abstract`: Area weighted reaggregation of 2019 presidential votes in North Carolina's U.S. Congressional Districts in 2019 without geometry
+- `Spatial Coverage`: No geometry
+- `Spatial Resolution`: No geometry
+- `Spatial Reference System`: N/A
+- `Temporal Coverage`: One election cycle
+- `Temporal Resolution`: 2019
+- `Lineage`: Constructed from data transformations of  C-Goodwin-A-1-TC.shp and precincts.shp. Constructed variables: pArea, pctRep, fArea, aw, awDem, awRep
+- `Distribution`: Created during analysis
+- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
+- `Data Quality`: Quality unknown
+- `Variables`: 
+  | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| PREC_ID | Precinct_ID | precinct id| object | N/A | N/A | N/A | N/A |
+| COUNTY_NAM | county name | precinct county name | object | N/A | N/A | N/A | N/A |
+| dem | democratic votes | votes for Democratic Party candidate in 2019 presidential election | int64 | N/A | 1, 4979 | N/A | N/A |
+| rep | republican votes | votes for Republican Party candidate in 2019 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
+| cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
+| District | U.S. Congressional District | unique district number | int64 | N/A | 1, 13 | N/A | N/A |
+| pArea | precinct area | geodesic precinct area | float64 | N/A | not yet known | N/A | N/A |
+| pctRep | percent republican votes | percent of votes for the 2019 republican presidential candidate, by precinct | int64 | N/A | not yet known | N/A | N/A |
+| fArea | fragment area | geodesic fragment area | float64 | N/A | not yet known | N/A | N/A |
+| aw | area weight | percentage of precinct contained by fragment  | float64 | N/A | not yet known | N/A | N/A |
+| awDem | area weighted democratic votes | number of votes for the 2019 democratic presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
+| awRep | area weighted republican votes | number of votes for the 2019 republican presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
+
+#### D_awr_2019.shp
+- `Abstract`: Area weighted reaggregation of 2019 presidential votes in North Carolina's U.S. Congressional Districts in 2019 with geometry, predicted election results, and compactness scores
+- `Spatial Coverage`: North Carolina, USA
+- `Spatial Resolution`: U.S. Congressional Districts
+- `Spatial Reference System`: 32119 NAD 1983 North Carolina
+- `Temporal Coverage`: One election cycle
+- `Temporal Resolution`: 2019
+- `Lineage`: Constructed from data transformations of C-Goodwin-A-1-TC.shp and precincts.shp. Constructed variables: pctDRep, dPerim, dArea, dCompact
+- `Distribution`: Created during analysis
+- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
+- `Data Quality`: Quality unknown
+- `Variables`: 
+  | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| PREC_ID | Precinct_ID | precinct id| object | N/A | N/A | N/A | N/A |
+| COUNTY_NAM | county name | precinct county name | object | N/A | N/A | N/A | N/A |
+| dem | democratic votes | votes for Democratic Party candidate in 2019 presidential election | int64 | N/A | 1, 4979 | N/A | N/A |
+| rep | republican votes | votes for Republican Party candidate in 2019 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
+| cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
+| District | U.S. Congressional District | unique district number | int64 | N/A | 1, 13 | N/A | N/A |
+| pArea | precinct area | geodesic precinct area | float64 | N/A | not yet known | N/A | N/A |
+| pctRep | percent republican votes | percent of votes for the 2019 republican presidential candidate, by precinct | int64 | N/A | not yet known | N/A | N/A |
+| fArea | fragment area | geodesic fragment area | float64 | N/A | not yet known | N/A | N/A |
+| aw | area weight | percentage of precinct contained by fragment  | float64 | N/A | not yet known | N/A | N/A |
+| awDem | area weighted democratic votes | number of votes for the 2019 democratic presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
+| awRep | area weighted republican votes | number of votes for the 2019 republican presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
+| pctDRep | percentage of republican votes by district | percentage of votes for the 2019 republican presidential candidate in each district | float64 | N/A | not yet known | N/A | N/A |
 | dPerim | district perimeter | planimetric district perimeter | float64 | N/A | not yet known | N/A | N/A |
 | dArea | district area | planimetric district perimeter | float64 | N/A | not yet known | N/A | N/A |
 | dCompact | district compactness score | district compactness score = (400*π*dArea)/(dPerim^2) | float64 | N/A | not yet known | N/A | N/A |
