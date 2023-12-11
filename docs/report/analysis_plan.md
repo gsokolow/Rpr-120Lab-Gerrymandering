@@ -18,7 +18,7 @@ Then, compactness scores are calculated by multiplying the area by 400π and div
 The deliverables include summary statistics for the compactness and percentage of Republicans from the 2026 and 2019 districts, as well as 4 maps: 
 percentage votes for Republican presidential candidate by voting precinct, percentage votes for the 2016 Republican presidential candidate by 2016 districts, percentage of votes for the 2016 Republican presidential candidate by 2019 districts, and the compactness scores for each 2016 and 2019 district.
 
-This replication shifts the computational environment from QGIS to Python. Several data layers are provided for the original lab, including the 2016 and 2019 congressional district maps and the 2016 North Carolina voting precints and presidential election data. I will develop the code for this study using the originally given data layers, but once I have it running I will attempt to download them directly from the internet to improve transparency and reproducibility. I will also archive copies of both the originally given data and the newly downloaded data.
+This replication shifts the computational environment from QGIS to Python. Several data layers are provided for the original lab, including the 2016 and 2019 congressional district maps and the 2016 North Carolina voting precints and presidential election data. I will develop the code for this study using the originally given data layers. A next step for a reanalysis of this study would be to pull in the data directly from the original sources, but this is outside the scope of this replication study.
 
 
 ## Study Metadata
@@ -44,7 +44,7 @@ This replication shifts the computational environment from QGIS to Python. Sever
 
 ## Study design
 
-This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned prior to getting the lab up and running in python. Once this is complete, a reanalysis will consist of using the same working code to test the original data sources.
+This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned to the mothodology of the original lab; only the computational environment.
 
 Kimambo's original lab is an observational study of partisan gerrymandering in North Carolina. It aims to determine if the court-ordered redistricting of North Carolina's 2016 districts resulted in districts that were more fair in terms of geographic compactness and political representation. An area weighted reaggregation is used to allocate votes for the Republican presidential candidate in 2016 to North Carolina's 2016 and 2019 congressonal districts. To calculate compactness for each district, the following equation is used: compactness = 400 * π * area / perimeter^2.
 
@@ -59,14 +59,12 @@ All imported packages and versions can be found under /procedure/environment/req
 
 ### Data and variables
 
-There are two sets of data used in this replication study: the original files given with the lab, and the newly downloaded files added for improved reproducibility. 
-The newly downloaded files *should* contain the same information as the original givens, but this will be tested in the analysis code.
-All data sources are secondary.
+The original data made available for the lab in 2021 is stored under data/raw/public and will be used for the replication. 
 
 ### Secondary Data Sources
 
-### Raw Data; Given
-#### 2016_Contingent_Congressional_Plan_Corrected.shp (data/raw/public/givens/2016_Contingent_Congressional_Plan_Corrected.shp)
+### Raw Data
+#### 2016_Contingent_Congressional_Plan_Corrected.shp 
 
 **Standard Metadata**
 
@@ -90,7 +88,7 @@ All data sources are secondary.
   - `Missing Data Value(s)`: N/A
   - `Missing Data Frequency`: N/A
 
-#### C-Goodwin-A-1-TC.shp (data/raw/public/givens/C-Goodwin-A-1-TC.shp)
+#### C-Goodwin-A-1-TC.shp 
 
 **Standard Metadata**
 
@@ -164,16 +162,6 @@ All data sources are secondary.
 | N/A | Mean percent Republican 2019 | mean percent Republican votes in 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
 | N/A | Maximum percent Republican 2016 | maximum percent Republican votes in 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
 | N/A | Maximum percent Republican 2019 | maximum percent Republican votes in 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
-
-### Raw Data, Downloaded (these files will be downloaded into the working analysis code during the reanalysis phase).
-
-#### 2016_Contingent_Congressional_Plan_Corrected.shp (data/raw/public/downloaded/2016_Contingent_Congressional_Plan_Corrected.shp)
-
-#### C-Goodwin-A-1-TC.shp (data/raw/public/downloaded/C-Goodwin-A-1-TC.shp)
-
-#### Precincts.shp (data/raw/public/downloaded/Precincts.shp)
-
-#### Tabular election results were unable to be downloaded securely
 
 
 ### Generated final files
@@ -426,7 +414,7 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d 
 3. **variable** New field aw (*type: float64*\*): For each fragment (precinct + district combination), calculate the proportion of the precinct contained by the fragment (this determines the proportion of precinct votes allocated to each fragment) = 'fArea'/'pArea' -> 2019_fragments (variable name can stay the same, as we are just adding new fields)
 4. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> 2019_fragment
 5. **variable** New field awRep (*type: float64*\*): Calculate the proportion of republican votes (from the precinct) to be allocated to each fragement = 'rep' * 'aw' -> 2019_fragment
-6. **group by attribute** Group 2019_fragments by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> **Export as Grouped_Districts_2019.xlsx**
+6. **group by attribute** Group 2019_fragments by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> grouped_districts_2019
 7. **join by attribute** Join Grouped_Districts_2019.xlsx (input layer 2) to 2019_d (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2019
 8. **variable** New field pctDRep (*type: float64*\*): Calculate the percentage of republican votes in each district = 'sumawrep' / ('sumawRep + 'sumawDem') -> D_awr_2016
 9. **variable** New field dPerim (*type: float64*\*): Calculate the planimetric perimeter of the district (based on the projection; perim($geom)) -> D_awr_2019
@@ -442,17 +430,13 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d 
 
 #### Comparative Analysis
 1. **variable** New data frame original_sstats; populate with minimum, mean, and maximum compactness score and percentage of Republican votes assigned to each district in 2016 and 2019 from 07_Lab07_PartisanGerrymandering.pdf
-2. **variable** New data frame agreement (*type: boolean*): Compare original_sstats with replication_sstats.xlsx (rounded to three decimal points) -> agreement
+2. **variable** New data frame agreement (*type: float64*): Subtract original_sstats from replication_sstats.xlsx (rounded to three decimal points) and take the absolute value -> agreement
 
 
 \* **Deviation from original study:** that the original form of area field was decimal with unspecified precision; the aw field has a specified precision of 6. By default, geopandas' area calculator works in float 64 and that is what is used in this analysis.
 
 ### Analysis
 Hypothesis 1. *There is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 in this analysis as compared to the original lab handout (see docs/07_Lab07_partisanGerrymandering.pdf).*
-
-If the summary stats generated by this analysis do not agree with the original summary stats given, the null hypothesis will be rejected. If the summary stats do agree, the null hypothesis will not be rejected.
-
-Hypothesis 2. *There is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 from data pulled directly from its sources compared to the original results.*
 
 If the summary stats generated by this analysis do not agree with the original summary stats given, the null hypothesis will be rejected. If the summary stats do agree, the null hypothesis will not be rejected.
 
@@ -467,14 +451,9 @@ Agreement between the original summary stats and the replication summary stats w
 
 However, the author no longer has access to the maps she made in Fall 2021, so these visualizations will serve to further investigate and communicate the data rather than serve as a direct comparison with the original results.
 
-#### Hypothesis 2
-Agreement between each given dataset and it's corresponding raw form will be presented in a table, as will the agreement between the original summary stats and the reanalysis summary stats.
-
 ## Discussion
 
 If the first null hypothesis is rejected, it suggests that the original lab could benefit from a more robust documentation of its solution. However, depending on the magnitude of the difference, a rejection of the null hypothesis could be indicative of an inequivalency between a python command used and the original tool intended for use in QGIS.
-
-If the second null hypothesis is rejected, it suggests that any data transformation occurring between the aquisition of the raw data online and the distribution of the given data prepared for the lab may benefit from more robust documentation. However, if the first null hypothesis is rejected (ie the replication fails); it is unlikely that the reanalysis (using much of the same code, but a slightly different data source) will succeed.
 
 ## Integrity Statement
 
