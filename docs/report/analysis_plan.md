@@ -44,7 +44,7 @@ This replication shifts the computational environment from QGIS to Python. Sever
 
 ## Study design
 
-This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned prior to getting the lab up and running in python. 
+This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned prior to getting the lab up and running in python. Once this is complete, a reanalysis will consist of using the same working code to test the original data sources.
 
 Kimambo's original lab is an observational study of partisan gerrymandering in North Carolina. It aims to determine if the court-ordered redistricting of North Carolina's 2016 districts resulted in districts that were more fair in terms of geographic compactness and political representation. An area weighted reaggregation is used to allocate votes for the Republican presidential candidate in 2016 to North Carolina's 2016 and 2019 congressonal districts. To calculate compactness for each district, the following equation is used: compactness = 400 * π * area / perimeter^2.
 
@@ -60,13 +60,13 @@ All imported packages and versions can be found under /procedure/environment/req
 ### Data and variables
 
 There are two sets of data used in this replication study: the original files given with the lab, and the newly downloaded files added for improved reproducibility. 
-The newly downloaded files *should* contain the same information as the original givens. 
+The newly downloaded files *should* contain the same information as the original givens, but this will be tested in the analysis code.
 All data sources are secondary.
 
 ### Secondary Data Sources
 
-### Raw Data
-#### 2016_Contingent_Congressional_Plan_Corrected.shp
+### Raw Data; Given
+#### 2016_Contingent_Congressional_Plan_Corrected.shp (data/raw/public/givens/2016_Contingent_Congressional_Plan_Corrected.shp)
 
 **Standard Metadata**
 
@@ -90,7 +90,7 @@ All data sources are secondary.
   - `Missing Data Value(s)`: N/A
   - `Missing Data Frequency`: N/A
 
-#### C-Goodwin-A-1-TC.shp
+#### C-Goodwin-A-1-TC.shp (data/raw/public/givens/C-Goodwin-A-1-TC.shp)
 
 **Standard Metadata**
 
@@ -125,7 +125,7 @@ All data sources are secondary.
 - `Temporal Coverage`: One election cycle
 - `Temporal Resolution`: 2016
 - `Lineage`: Retrieved from the North Carolina State Board of Elections; [precinct shapefiles](https://www.ncsbe.gov/results-data/voting-maps-redistricting), [tabular voting results](https://er.ncsbe.gov/downloads.html) and distributed by Professor Niwaeli Kimambo. The two data sources appear to have been joined but further information about how is unavailable. 
-- `Distribution`: Retrieved from the North Carolina State Board of Elections; [precinct shapefiles](https://www.ncsbe.gov/results-data/voting-maps-redistricting) at Geospatial Files > Precinct Files > Precinct Shapefiles (folder) > SBE_PRECINCTS_20161004.zip; [tabular voting results](https://er.ncsbe.gov/downloads.html) under 11/08/2016
+- `Distribution`: Retrieved from the North Carolina State Board of Elections; [precinct shapefiles](https://www.ncsbe.gov/results-data/voting-maps-redistricting) at Geospatial Files > Precinct Files > Precinct Shapefiles (folder) > SBE_PRECINCTS_20161004.zip; [tabular voting results](https://er.ncsbe.gov/downloads.html) under 11/08/2016 > Precinct Election Results *cannot be downloaded security
 - `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
 - `Data Quality`: Quality unknown
 - `Variables`:
@@ -165,8 +165,19 @@ All data sources are secondary.
 | N/A | Maximum percent Republican 2016 | maximum percent Republican votes in 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
 | N/A | Maximum percent Republican 2019 | maximum percent Republican votes in 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
 
+### Raw Data, Downloaded (these files will be downloaded into the working analysis code during the reanalysis phase).
+
+#### 2016_Contingent_Congressional_Plan_Corrected.shp (data/raw/public/downloaded/2016_Contingent_Congressional_Plan_Corrected.shp)
+
+#### C-Goodwin-A-1-TC.shp (data/raw/public/downloaded/C-Goodwin-A-1-TC.shp)
+
+#### Precincts.shp (data/raw/public/downloaded/Precincts.shp)
+
+#### Tabular election results were unable to be downloaded securely
+
+
 ### Generated final files
-**** !!!! be sure to come back and add the domain of the exported files **** 
+
 #### Grouped_Districts_2016.xlsx
 - `Abstract`: Area weighted reaggregation of 2016 presidential votes in North Carolina's U.S. Congressional Districts in 2016 without geometry
 - `Spatial Coverage`: No geometry
