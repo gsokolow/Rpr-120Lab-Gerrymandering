@@ -166,33 +166,6 @@ The original data made available for the lab in 2021 is stored under data/raw/pu
 
 ### Generated final files
 
-#### Grouped_Districts_2016.xlsx
-- `Abstract`: Area weighted reaggregation of 2016 presidential votes in North Carolina's U.S. Congressional Districts in 2016 without geometry
-- `Spatial Coverage`: No geometry
-- `Spatial Resolution`: No geometry
-- `Spatial Reference System`: N/A
-- `Temporal Coverage`: One election cycle
-- `Temporal Resolution`: 2016
-- `Lineage`: Constructed from data transformations of 2016_Contingent_Congressional_Plan_Corrected.shp and precincts.shp. Constructed variables: pArea, pctRep, fArea, aw, awDem, awRep
-- `Distribution`: Created during analysis
-- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
-- `Data Quality`: Quality unknown
-- `Variables`: 
-  | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| PREC_ID | Precinct_ID | precinct id| object | N/A | N/A | N/A | N/A |
-| COUNTY_NAM | county name | precinct county name | object | N/A | N/A | N/A | N/A |
-| dem | democratic votes | votes for Democratic Party candidate in 2016 presidential election | int64 | N/A | 1, 4979 | N/A | N/A |
-| rep | republican votes | votes for Republican Party candidate in 2016 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
-| cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
-| District | U.S. Congressional District | unique district number | int64 | N/A | 1, 13 | N/A | N/A |
-| pArea | precinct area | geodesic precinct area | float64 | N/A | not yet known | N/A | N/A |
-| pctRep | percent republican votes | percent of votes for the 2016 republican presidential candidate, by precinct | int64 | N/A | not yet known | N/A | N/A |
-| fArea | fragment area | geodesic fragment area | float64 | N/A | not yet known | N/A | N/A |
-| aw | area weight | percentage of precinct contained by fragment  | float64 | N/A | not yet known | N/A | N/A |
-| awDem | area weighted democratic votes | number of votes for the 2016 democratic presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
-| awRep | area weighted republican votes | number of votes for the 2016 republican presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
-
 #### D_awr_2016.shp
 - `Abstract`: Area weighted reaggregation of 2016 presidential votes in North Carolina's U.S. Congressional Districts in 2016 with geometry, predicted election results, and compactness scores
 - `Spatial Coverage`: North Carolina, USA
@@ -224,32 +197,6 @@ The original data made available for the lab in 2021 is stored under data/raw/pu
 | dArea | district area | planimetric district perimeter | float64 | N/A | not yet known | N/A | N/A |
 | dCompact | district compactness score | district compactness score = (400*π*dArea)/(dPerim^2) | float64 | N/A | not yet known | N/A | N/A |
 
-#### Grouped_Districts_2019.xlsx
-- `Abstract`: Area weighted reaggregation of 2019 presidential votes in North Carolina's U.S. Congressional Districts in 2019 without geometry
-- `Spatial Coverage`: No geometry
-- `Spatial Resolution`: No geometry
-- `Spatial Reference System`: N/A
-- `Temporal Coverage`: One election cycle
-- `Temporal Resolution`: 2019
-- `Lineage`: Constructed from data transformations of  C-Goodwin-A-1-TC.shp and precincts.shp. Constructed variables: pArea, pctRep, fArea, aw, awDem, awRep
-- `Distribution`: Created during analysis
-- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
-- `Data Quality`: Quality unknown
-- `Variables`: 
-  | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| PREC_ID | Precinct_ID | precinct id| object | N/A | N/A | N/A | N/A |
-| COUNTY_NAM | county name | precinct county name | object | N/A | N/A | N/A | N/A |
-| dem | democratic votes | votes for Democratic Party candidate in 2019 presidential election | int64 | N/A | 1, 4979 | N/A | N/A |
-| rep | republican votes | votes for Republican Party candidate in 2019 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
-| cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
-| District | U.S. Congressional District | unique district number | int64 | N/A | 1, 13 | N/A | N/A |
-| pArea | precinct area | geodesic precinct area | float64 | N/A | not yet known | N/A | N/A |
-| pctRep | percent republican votes | percent of votes for the 2019 republican presidential candidate, by precinct | int64 | N/A | not yet known | N/A | N/A |
-| fArea | fragment area | geodesic fragment area | float64 | N/A | not yet known | N/A | N/A |
-| aw | area weight | percentage of precinct contained by fragment  | float64 | N/A | not yet known | N/A | N/A |
-| awDem | area weighted democratic votes | number of votes for the 2019 democratic presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
-| awRep | area weighted republican votes | number of votes for the 2019 republican presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
 
 #### D_awr_2019.shp
 - `Abstract`: Area weighted reaggregation of 2019 presidential votes in North Carolina's U.S. Congressional Districts in 2019 with geometry, predicted election results, and compactness scores
@@ -324,8 +271,6 @@ For each secondary source, declare the extent to which authors had already engag
 
 For the three given datasets (2016_Contingent_Congressional_Plan_Corrected.shp; C-Goodwin-A-1-TC.shp; precincts.shp), the author has observed the full dataset through the original completion of the lab in fall 2021. 
 
-For the three newly downloaded files, the data is available, but only metadata has been observed (following the sources listed in the original lab). 
-
 - [ ] data is not available yet
 - [ ] data is available, but only metadata has been observed
 - [ ] metadata and descriptive statistics have been observed
@@ -394,8 +339,8 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d 
 7. **variable** New field aw (*type: float64*\*): For each fragment (precinct + district combination), calculate the proportion of the precinct contained by the fragment (this determines the proportion of precinct votes allocated to each fragment) = 'fArea'/'pArea' -> 2016_fragments (variable name can stay the same, as we are just adding new fields)
 8. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> 2016_fragment
 9. **variable** New field awRep (*type: float64*\*): Calculate the proportion of republican votes (from the precinct) to be allocated to each fragement = 'rep' * 'aw' -> 2016_fragment
-10. **group by attribute** Group 2016_fragments by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> **Export as Grouped_Districts_2016.xlsx**
-11. **join by attribute** Join Grouped_Districts_2016.xlsx (input layer 2) to 2016_d (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2016
+10. **group by attribute** Group 2016_fragments by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> grouped_districts_2016
+11. **join by attribute** grouped_districts_2016.xlsx (input layer 2) to 2016_d (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2016
 12. **variable** New field pctDRep (*type: float64*\*): Calculate the percentage of republican votes in each district = 'sumawrep' / ('sumawRep + 'sumawDem') -> D_awr_2016
 13. **variable** New field dPerim (*type: float64*\*): Calculate the planimetric perimeter of the district (based on the projection; perim($geom)) -> D_awr_2016
 14. **variable** New field dArea (*type: float64*\*): Calculate the planimetric area of the district (based on the projection; area($geom)) -> D_awr_2016
@@ -415,7 +360,7 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d 
 4. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> 2019_fragment
 5. **variable** New field awRep (*type: float64*\*): Calculate the proportion of republican votes (from the precinct) to be allocated to each fragement = 'rep' * 'aw' -> 2019_fragment
 6. **group by attribute** Group 2019_fragments by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> grouped_districts_2019
-7. **join by attribute** Join Grouped_Districts_2019.xlsx (input layer 2) to 2019_d (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2019
+7. **join by attribute** Join grouped_districts_2019 (input layer 2) to 2019_d (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2019
 8. **variable** New field pctDRep (*type: float64*\*): Calculate the percentage of republican votes in each district = 'sumawrep' / ('sumawRep + 'sumawDem') -> D_awr_2016
 9. **variable** New field dPerim (*type: float64*\*): Calculate the planimetric perimeter of the district (based on the projection; perim($geom)) -> D_awr_2019
 10. **variable** New field dArea (*type: float64*\*): Calculate the planimetric area of the district (based on the projection; area($geom)) -> D_awr_2019
@@ -453,7 +398,7 @@ However, the author no longer has access to the maps she made in Fall 2021, so t
 
 ## Discussion
 
-If the first null hypothesis is rejected, it suggests that the original lab could benefit from a more robust documentation of its solution. However, depending on the magnitude of the difference, a rejection of the null hypothesis could be indicative of an inequivalency between a python command used and the original tool intended for use in QGIS.
+If the null hypothesis is rejected, it suggests that the original lab could benefit from a more robust documentation of its solution. However, depending on the magnitude of the difference, a rejection of the null hypothesis could be indicative of an inequivalency between a python command used and the original tool intended for use in QGIS.
 
 ## Integrity Statement
 
