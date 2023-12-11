@@ -139,7 +139,7 @@ All data sources are secondary.
 | cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
 
 #### 07_Lab07_PartisanGerrymandering.pdf
-- `Abstract`: Solution summary statistics for the original lab: minimum, mean, maximum compactness scores and percentage Republicam votes in 2016 and 2019 
+- `Abstract`: Solution summary statistics for the original lab: minimum, mean, maximum compactness scores and percentage Republican votes in 2016 and 2019 
 - `Spatial Coverage`: North Carolina, USA
 - `Spatial Resolution`: U.S. Congressional Districts
 - `Spatial Reference System`: N/A
@@ -283,6 +283,32 @@ All data sources are secondary.
 | dArea | district area | planimetric district perimeter | float64 | N/A | not yet known | N/A | N/A |
 | dCompact | district compactness score | district compactness score = (400*π*dArea)/(dPerim^2) | float64 | N/A | not yet known | N/A | N/A |
 
+#### replication_sstats.xlsx
+- `Abstract`: Summary statistics generated during analysis: minimum, mean, maximum compactness scores and percentage Republican votes in 2016 and 2019 
+- `Spatial Coverage`: North Carolina, USA
+- `Spatial Resolution`: U.S. Congressional Districts
+- `Spatial Reference System`: N/A
+- `Temporal Coverage`: Two election cycles; 2016 & 2019
+- `Temporal Resolution`: 2016; 2019
+- `Lineage`: Constructed from data transformations of 2016_Contingent_Congressional_Plan_Corrected.shp, C-Goodwin-A-1-TC.shp and precincts.shp. 
+- `Distribution`: Created during analysis
+- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
+- `Data Quality`: Quality unknown
+- `Variables`:
+  | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| N/A | Minimum compactness score 2016 | minimum compactness score from 2016 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Minimum compactness score 2019 | minimum compactness score from 2019 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Mean compactness score 2016 | mean compactness score from 2016 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Mean compactness score 2019 | mean compactness score from 2019 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Maximum compactness score 2016 | maximum compactness score from 2016 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Maximum compactness score 2019 | maximum compactness score from 2019 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Minimum percent Republican 2016 | minimum percent Republican votes in 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Minimum percent Republican 2019 | minimum percent Republican votes in 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Mean percent Republican 2016 | mean percent Republican votes in 2016 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Mean percent Republican 2019 | mean percent Republican votes in 2019 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Maximum percent Republican 2016 | maximum percent Republican votes in 2016 districts | N/A | N/A | N/A | N/A | N/A |
+| N/A | Maximum percent Republican 2019 | maximum percent Republican votes in 2019 districts | N/A | N/A | N/A | N/A | N/A |
 
 
 
@@ -401,30 +427,43 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d 
 15. **variable** New variable 2019_pct_max (*type: float64*\*): Calculate the maximum percentage of Republican votes in 2019 Districts (using D_awr_2019) -> summary_stats
 16. **variable** New variable 2019_compactness_min (*type: float64*\*): Calculate the minimum compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
 17. **variable** New variable 2019_compactness_mean (*type: float64*\*): Calculate the mean compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
-18. **variable** New variable 2019_compactness_max (*type: float64*\*): Calculate the maximum compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
+18. **variable** New variable 2019_compactness_max (*type: float64*\*): Calculate the maximum compactness score for 2019 Districts (using D_awr_2019) -> **Export as replication_sstats.xlsx**
 
 #### Comparative Analysis
 1. **variable** New data frame original_sstats; populate with minimum, mean, and maximum compactness score and percentage of Republican votes assigned to each district in 2016 and 2019 from 07_Lab07_PartisanGerrymandering.pdf
+2. **variable** New data frame agreement (*type: boolean*): Compare original_sstats with replication_sstats.xlsx (rounded to three decimal points) -> agreement
 
 
 \* **Deviation from original study:** that the original form of area field was decimal with unspecified precision; the aw field has a specified precision of 6. By default, geopandas' area calculator works in float 64 and that is what is used in this analysis.
 
 ### Analysis
+Hypothesis 1. *There is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 in this analysis as compared to the original lab handout (see docs/07_Lab07_partisanGerrymandering.pdf).*
 
-This analysis is testing the null hypothesis that there is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 in this analysis as compared to the original lab handout (see docs/07_Lab07_partisanGerrymandering.pdf).
+If the summary stats generated by this analysis do not agree with the original summary stats given, the null hypothesis will be rejected. If the summary stats do agree, the null hypothesis will not be rejected.
 
-This file includes a table of summary statistics consisting of the minimum, mean, and maximum compactness score and percentage of Republican votes assigned to each district in 2016 and 2019. If the summary stats generated by this
-Describe the methods of analysis that will directly test the hypotheses or provide results to answer the research questions.
-This section should explicitly define any spatial / statistical *models* and their *parameters*, including *grouping* criteria, *weighting* criteria, and *significance thresholds*.
-Also explain any follow-up analyses or validations.
+Hypothesis 2. *There is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 from data pulled directly from its sources compared to the original results.*
+
+If the summary stats generated by this analysis do not agree with the original summary stats given, the null hypothesis will be rejected. If the summary stats do agree, the null hypothesis will not be rejected.
+
 
 ## Results
+#### Hypothesis 1
+Agreement between the original summary stats and the replication summary stats will be presented in a table. Additionally, I will visualize the data in a series of 4 maps using the same classification breaks and divergent color scheme (centered on 50%) as required in the original lab:
+1. percentage of votes for 2016 Republican presidential candidate by voting precinct
+2. percentage of votes for 2016 Republican presidential candidate by 2016 Districts
+3. percentage of votes for 2016 Republican presidential candidate by 2019 Districts
+4. compactness of each 2016 and 2019 district
 
-Describe how results are to be presented.
+However, the author no longer has access to the maps she made in Fall 2021, so these visualizations will serve to further investigate and communicate the data rather than serve as a direct comparison with the original results.
+
+#### Hypothesis 2
+Agreement between each given dataset and it's corresponding raw form will be presented in a table, as will the agreement between the original summary stats and the reanalysis summary stats.
 
 ## Discussion
 
-Describe how the results are to be interpreted *vis a vis* each hypothesis or research question.
+If the first null hypothesis is rejected, it suggests that the original lab could benefit from a more robust documentation of its solution. However, depending on the magnitude of the difference, a rejection of the null hypothesis could be indicative of an inequivalency between a python command used and the original tool intended for use in QGIS.
+
+If the second null hypothesis is rejected, it suggests that any data transformation occurring between the aquisition of the raw data online and the distribution of the given data prepared for the lab may benefit from more robust documentation. However, if the first null hypothesis is rejected (ie the replication fails); it is unlikely that the reanalysis (using much of the same code, but a slightly different data source) will succeed.
 
 ## Integrity Statement
 
@@ -433,10 +472,10 @@ If a prior registration *does* exist, explain the rationale for revising the reg
 
 ## Acknowledgements
 
-- `Funding Name`: name of funding for the project
-- `Funding Title`: title of project grant
-- `Award info URI`: web address for award information
-- `Award number`: award number
+- `Funding Name`: N/A
+- `Funding Title`: N/A
+- `Award info URI`: N/A
+- `Award number`: N/A
 
 This report is based upon the template for Reproducible and Replicable Research in Human-Environment and Geographical Sciences, DOI:[10.17605/OSF.IO/W29MQ](https://doi.org/10.17605/OSF.IO/W29MQ)
 
