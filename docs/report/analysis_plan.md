@@ -295,19 +295,35 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d 
 18. **variable** New variable 2016_pct_mean (*type: float64*\*): Calculate the mean percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
 19. **variable** New variable 2016_pct_max (*type: float64*\*): Calculate the maximum percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
 20. **variable** New variable 2016_compactness_min (*type: float64*\*): Calculate the minimum compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
-20. **variable** New variable 2016_compactness_mean (*type: float64*\*): Calculate the mean compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
-20. **variable** New variable 2016_compactness_max (*type: float64*\*): Calculate the maximum compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
+21. **variable** New variable 2016_compactness_mean (*type: float64*\*): Calculate the mean compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
+22. **variable** New variable 2016_compactness_max (*type: float64*\*): Calculate the maximum compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
 
 #### 2019 Districts
-
-
-
+1. **geographic** Union: input = precincts_area; overlay = 2019_d -> 2019_fragments (note that precincts_area is created in steps 1-4 in 2016 District transformations and does not change across years)
+2. **variable** New field fArea (*type: float64*\*): Calculate goedsic/ellipsoidal area of geometry in 2019_fragments
+3. **variable** New field aw (*type: float64*\*): For each fragment (precinct + district combination), calculate the proportion of the precinct contained by the fragment (this determines the proportion of precinct votes allocated to each fragment) = 'fArea'/'pArea' -> 2019_fragments (variable name can stay the same, as we are just adding new fields)
+4. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> 2019_fragment
+5. **variable** New field awRep (*type: float64*\*): Calculate the proportion of republican votes (from the precinct) to be allocated to each fragement = 'rep' * 'aw' -> 2019_fragment
+6. **group by attribute** Group 2019_fragments by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> **Export as Grouped_Districts_2019.xlsx**
+7. **join by attribute** Join Grouped_Districts_2019.xlsx (input layer 2) to 2019_d (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2019
+8. **variable** New field pctDRep (*type: float64*\*): Calculate the percentage of republican votes in each district = 'sumawrep' / ('sumawRep + 'sumawDem') -> D_awr_2016
+9. **variable** New field dPerim (*type: float64*\*): Calculate the planimetric perimeter of the district (based on the projection; perim($geom)) -> D_awr_2019
+10. **variable** New field dArea (*type: float64*\*): Calculate the planimetric area of the district (based on the projection; area($geom)) -> D_awr_2019
+11. **variable** New field dCompact (*type: float64*\*): Calculate compactness using the equation given in the lab = (400 * π * 'dArea')/(dPerim^2) -> **Export as D_awr_2019.shp**
+12. **variable** Create new dataframe -> summary_stats
+13. **variable** New variable 2019_pct_min (*type: float64*\*): Calculate the minimum percentage of Republican votes in 2019 Districts (using D_awr_2019) -> summary_stats
+14. **variable** New variable 2019_pct_mean (*type: float64*\*): Calculate the mean percentage of Republican votes in 2019 Districts (using D_awr_2019) -> summary_stats
+15. **variable** New variable 2019_pct_max (*type: float64*\*): Calculate the maximum percentage of Republican votes in 2019 Districts (using D_awr_2019) -> summary_stats
+16. **variable** New variable 2019_compactness_min (*type: float64*\*): Calculate the minimum compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
+17. **variable** New variable 2019_compactness_mean (*type: float64*\*): Calculate the mean compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
+18. **variable** New variable 2019_compactness_max (*type: float64*\*): Calculate the maximum compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
 
 
 \* **Deviation from original study:** that the original form of area field was decimal with unspecified precision; the aw field has a specified precision of 6. By default, geopandas' area calculator works in float 64 and that is what is used in this analysis.
 
 ### Analysis
 
+This analysis is testing the null hypothesis that there is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 in this analysis as compared to the [original lab handout]().  
 Describe the methods of analysis that will directly test the hypotheses or provide results to answer the research questions.
 This section should explicitly define any spatial / statistical *models* and their *parameters*, including *grouping* criteria, *weighting* criteria, and *significance thresholds*.
 Also explain any follow-up analyses or validations.
