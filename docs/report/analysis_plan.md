@@ -138,6 +138,33 @@ All data sources are secondary.
 | rep | republican votes | votes for Republican Party candidate in 2016 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
 | cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
 
+#### 07_Lab07_PartisanGerrymandering.pdf
+- `Abstract`: Solution summary statistics for the original lab: minimum, mean, maximum compactness scores and percentage Republicam votes in 2016 and 2019 
+- `Spatial Coverage`: North Carolina, USA
+- `Spatial Resolution`: U.S. Congressional Districts
+- `Spatial Reference System`: N/A
+- `Temporal Coverage`: Two election cycles; 2016 & 2019
+- `Temporal Resolution`: 2016; 2019
+- `Lineage`: Retrieved from the 2021 Fall GEOG 120 Human Geography with GIS Canvas page (and the author's personal files); Distributed by Professor Niwaeli Kimambo. Entered by hand in analysis code. 
+- `Distribution`: Retrieved from the 2021 Fall GEOG 120 Human Geography with GIS Canvas page (not open to the public).
+- `Constraints`: Legal constraints for *access* or *use* to protect *privacy* or *intellectual property rights*: N/A
+- `Data Quality`: Quality unknown
+- `Variables`:
+  | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| N/A | Minimum compactness score 2016 | minimum compactness score from 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Minimum compactness score 2019 | minimum compactness score from 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Mean compactness score 2016 | mean compactness score from 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Mean compactness score 2019 | mean compactness score from 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Maximum compactness score 2016 | maximum compactness score from 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Maximum compactness score 2019 | maximum compactness score from 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Minimum percent Republican 2016 | minimum percent Republican votes in 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Minimum percent Republican 2019 | minimum percent Republican votes in 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Mean percent Republican 2016 | mean percent Republican votes in 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Mean percent Republican 2019 | mean percent Republican votes in 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Maximum percent Republican 2016 | maximum percent Republican votes in 2016 districts | N/A | 0.01 | N/A | N/A | N/A |
+| N/A | Maximum percent Republican 2019 | maximum percent Republican votes in 2019 districts | N/A | 0.01 | N/A | N/A | N/A |
+
 ### Generated final files
 **** !!!! be sure to come back and add the domain of the exported files **** 
 #### Export Grouped_Districts_2016.xlsx
@@ -206,7 +233,7 @@ All data sources are secondary.
 Prior experience with the study area, prior data collection, or prior observation of the data can compromise the validity of a study, e.g. through p-hacking.
 Therefore, disclose any prior experience or observations at the time of study pre-registration here, with example text below:
 
-At the time of this study pre-registration, the author had prior experience with this data having worked through the original lab problem as a student in 2021. During the summer of 2022, the author was a participant at the Spatial Modeling of Electoral Redistricting REU at the University of Puget Sound, where she studied gerrymandering and worked closely with spatial measures including but not limited to compactness scores. The study area for that reseatch was the entire United States and thus included North Carolina. 
+At the time of this study pre-registration, the author had prior experience with this data having worked through the original lab problem as a student in 2021. From the onset of this analsysis, the author has had access to the original lab results. During the summer of 2022, the author was a participant at the Spatial Modeling of Electoral Redistricting REU at the University of Puget Sound, where she studied gerrymandering and worked closely with spatial measures including but not limited to compactness scores. The study area for that reseatch was the entire United States and thus included North Carolina. 
 
 
 
@@ -318,12 +345,17 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to 2016_d 
 17. **variable** New variable 2019_compactness_mean (*type: float64*\*): Calculate the mean compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
 18. **variable** New variable 2019_compactness_max (*type: float64*\*): Calculate the maximum compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
 
+#### Comparative Analysis
+1. **variable** New data frame original_sstats; populate with minimum, mean, and maximum compactness score and percentage of Republican votes assigned to each district in 2016 and 2019 from 07_Lab07_PartisanGerrymandering.pdf
+
 
 \* **Deviation from original study:** that the original form of area field was decimal with unspecified precision; the aw field has a specified precision of 6. By default, geopandas' area calculator works in float 64 and that is what is used in this analysis.
 
 ### Analysis
 
-This analysis is testing the null hypothesis that there is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 in this analysis as compared to the [original lab handout]().  
+This analysis is testing the null hypothesis that there is no difference between the compactness scores and percent of Republican votes generated for each Congressional district in 2016 and 2019 in this analysis as compared to the original lab handout (see docs/07_Lab07_partisanGerrymandering.pdf).
+
+This file includes a table of summary statistics consisting of the minimum, mean, and maximum compactness score and percentage of Republican votes assigned to each district in 2016 and 2019. If the summary stats generated by this
 Describe the methods of analysis that will directly test the hypotheses or provide results to answer the research questions.
 This section should explicitly define any spatial / statistical *models* and their *parameters*, including *grouping* criteria, *weighting* criteria, and *significance thresholds*.
 Also explain any follow-up analyses or validations.
