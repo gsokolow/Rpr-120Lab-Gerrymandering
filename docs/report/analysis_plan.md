@@ -8,7 +8,7 @@
 
 ## Abstract
 
-This study is a *reproduction/replication* of:
+This study is a *replication* of:
 
 > Kimambo, Niwaeli. 2021. *Lec/Lab: Gerrymandering: Maps and political representation* Human Geography with GIS (GEOG 120) at Middlebury College.
 
@@ -18,7 +18,7 @@ Then, compactness scores are calculated by multiplying the area by 400π and div
 The deliverables include summary statistics for the compactness and percentage of Republicans from the 2026 and 2019 districts, as well as 4 maps: 
 percentage votes for Republican presidential candidate by voting precinct, percentage votes for the 2016 Republican presidential candidate by 2016 districts, percentage of votes for the 2016 Republican presidential candidate by 2019 districts, and the compactness scores for each 2016 and 2019 district.
 
-This replication shifts the computational environment from QGIS to Python. Several data layers are provided for the original lab, including the 2016 and 2019 congressional district maps and the 2016 North Carolina voting precints and presidential election data. I will develop the code for this study using the originally given data layers. A next step for a reanalysis of this study would be to pull in the data directly from the original sources, but this is outside the scope of this replication study.
+This replication shifts the computational environment from QGIS to Python. Several data layers are provided for the original lab, including the 2016 and 2019 congressional district maps and the 2016 North Carolina voting precints and presidential election data. This study uses the originally given data layers. A next step for a reanalysis of this study would be to pull in the data directly from the original sources, but this is outside the scope of this replication study.
 
 
 ## Study Metadata
@@ -44,7 +44,7 @@ This replication shifts the computational environment from QGIS to Python. Sever
 
 ## Study design
 
-This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned to the mothodology of the original lab; only the computational environment.
+This study is a **reproduction** of Kimambo's 2021 lab. No changes are planned to the mothodology of the original lab; only the computational environment is different.
 
 Kimambo's original lab is an observational study of partisan gerrymandering in North Carolina. It aims to determine if the court-ordered redistricting of North Carolina's 2016 districts resulted in districts that were more fair in terms of geographic compactness and political representation. An area weighted reaggregation is used to allocate votes for the Republican presidential candidate in 2016 to North Carolina's 2016 and 2019 congressonal districts. To calculate compactness for each district, the following equation is used: compactness = 400 * π * area / perimeter^2.
 
@@ -167,6 +167,7 @@ The original data made available for the lab in 2021 is stored under data/raw/pu
 ### Generated final files
 
 #### D_awr_2016.shp
+**Unplanned deviation from analysis plan** Fields made meaningless by geometric transformation were dropped before export. These fields have been strike-throughed.
 - `Abstract`: Area weighted reaggregation of 2016 presidential votes in North Carolina's U.S. Congressional Districts in 2016 with geometry, predicted election results, and compactness scores
 - `Spatial Coverage`: North Carolina, USA
 - `Spatial Resolution`: U.S. Congressional Districts
@@ -180,16 +181,16 @@ The original data made available for the lab in 2021 is stored under data/raw/pu
 - `Variables`: 
   | Label | Alias | Definition | Type | Accuracy | Domain | Missing Data Value(s) | Missing Data Frequency |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| PREC_ID | Precinct_ID | precinct id| object | N/A | N/A | N/A | N/A |
+~~| PREC_ID | Precinct_ID | precinct id| object | N/A | N/A | N/A | N/A |
 | COUNTY_NAM | county name | precinct county name | object | N/A | N/A | N/A | N/A |
 | dem | democratic votes | votes for Democratic Party candidate in 2016 presidential election | int64 | N/A | 1, 4979 | N/A | N/A |
 | rep | republican votes | votes for Republican Party candidate in 2016 presidential election | int64 | N/A | 2, 4808 | N/A | N/A |
-| cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |
+| cntyprec | unique precinct identifier | concatenation of county name and precinct id | object | N/A | N/A | N/A | N/A |~~
 | District | U.S. Congressional District | unique district number | int64 | N/A | 1, 13 | N/A | N/A |
-| pArea | precinct area | geodesic precinct area | float64 | N/A | not yet known | N/A | N/A |
+~~| pArea | precinct area | geodesic precinct area | float64 | N/A | not yet known | N/A | N/A |
 | pctRep | percent republican votes | percent of votes for the 2016 republican presidential candidate, by precinct | int64 | N/A | not yet known | N/A | N/A |
 | fArea | fragment area | geodesic fragment area | float64 | N/A | not yet known | N/A | N/A |
-| aw | area weight | percentage of precinct contained by fragment  | float64 | N/A | not yet known | N/A | N/A |
+| aw | area weight | percentage of precinct contained by fragment  | float64 | N/A | not yet known | N/A | N/A |~~
 | awDem | area weighted democratic votes | number of votes for the 2016 democratic presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
 | awRep | area weighted republican votes | number of votes for the 2016 republican presidential candidate allocated to fragment | float64 | N/A | not yet known | N/A | N/A |
 | pctDRep | percentage of republican votes by district | percentage of votes for the 2016 republican presidential candidate in each district | float64 | N/A | not yet known | N/A | N/A |
@@ -342,6 +343,7 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016
 8. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> frag_2016
 9. **variable** New field awRep (*type: float64*\*): Calculate the proportion of republican votes (from the precinct) to be allocated to each fragement = 'rep' * 'aw' -> frag_2016
 10. **group by attribute** Group frag_2016 by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> grouped_districts_2016
+**Deviation from analysis plan:** The type of summary for the group by was not specified, but sum is the correct operation to add the weighted number of voters in each district together.
 11. **join by attribute** grouped_districts_2016.xlsx (input layer 2) to cd_2016 (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2016
 12. **variable** New field pctDRep (*type: float64*\*): Calculate the percentage of republican votes in each district = 'sumawrep' / ('sumawRep + 'sumawDem') -> D_awr_2016
 13. **variable** New field dPerim (*type: float64*\*): Calculate the planimetric perimeter of the district (based on the projection; perim($geom)) -> D_awr_2016
@@ -349,6 +351,7 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016
 15. **variable** New field dCompact (*type: float64*\*): Calculate compactness using the equation given in the lab = (400 * π * 'dArea')/(dPerim^2) -> **Export as D_awr_2016.shp**
 16. **variable** Create new dataframe -> summary_stats
 17. **variable** New variable s2016_pct_min (*type: float64*\*): Calculate the minimum percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
+**Unplanned deviation from analysis plan** pctDRep must be multiplied by 100 to output a percent rather than a proportion.
 18. **variable** New variable s2016_pct_mean (*type: float64*\*): Calculate the mean percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
 19. **variable** New variable s2016_pct_max (*type: float64*\*): Calculate the maximum percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
 20. **variable** New variable s2016_compactness_min (*type: float64*\*): Calculate the minimum compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
