@@ -3,3 +3,4 @@ geopandas
 geodatsets
 math
 shapely.validation
+folium
