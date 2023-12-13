@@ -351,7 +351,7 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016
 15. **variable** New field dCompact (*type: float64*\*): Calculate compactness using the equation given in the lab = (400 * π * 'dArea')/(dPerim^2) -> **Export as D_awr_2016.shp**
 16. **variable** Create new dataframe -> summary_stats
 17. **variable** New variable s2016_pct_min (*type: float64*\*): Calculate the minimum percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
-**Unplanned deviation from analysis plan** pctDRep must be multiplied by 100 to output a percent rather than a proportion.
+**Deviation from analysis plan** pctDRep must be multiplied by 100 to output a percent rather than a proportion.
 18. **variable** New variable s2016_pct_mean (*type: float64*\*): Calculate the mean percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
 19. **variable** New variable s2016_pct_max (*type: float64*\*): Calculate the maximum percentage of Republican votes in 2016 Districts (using D_awr_2016) -> summary_stats
 20. **variable** New variable s2016_compactness_min (*type: float64*\*): Calculate the minimum compactness score for 2016 Districts (using D_awr_2016) -> summary_stats
@@ -360,19 +360,21 @@ First, I will rename 2016_Contingent_Congressional_Plan_Corrected.shp to cd_2016
 
 #### 2019 Districts
 1. **geographic** Union: input = precincts_area; overlay = cd_2019 -> frag_2019 (note that precincts_area is created in steps 1-4 in 2016 District transformations and does not change across years)
-**Deviation from analysis plan:** This union takes a long time to run, so export as Union_2016_precincts_2016_districts.shp and read back in
+**Unplanned Deviation in Analysis**: Running a union between 2016 precincts and 2019 congressional districts resulted in a GEOSDifference error where 2 linestrings overlapped without a coordinate point between districts 4 and 8. Substituting an intersection for a union works around this issue because a union generates all possible combinations of precincts not overlapped by districts, districts not overlapped by precincts, and district precinct overlaps. The area-weighted reaggregation is based solely on the transfer of data via an overlap, so the difference between a union and intersection is negligible in this case. The intersection runs much faster then the union, but will still be saved as a separate file: export as Intersection_2016_precincts_2019_districts.shp and read back in.
 2. **variable** New field fArea (*type: float64*\*): Calculate goedsic/ellipsoidal area of geometry in frag_2019
 3. **variable** New field aw (*type: float64*\*): For each fragment (precinct + district combination), calculate the proportion of the precinct contained by the fragment (this determines the proportion of precinct votes allocated to each fragment) = 'fArea'/'pArea' -> frag_2019 (variable name can stay the same, as we are just adding new fields)
 4. **variable** New field awDem (*type: float64*\*): Calculate the proportion of democratic votes (from the precinct) to be allocated to each fragment = 'dem' * 'aw' -> frag_2019
 5. **variable** New field awRep (*type: float64*\*): Calculate the proportion of republican votes (from the precinct) to be allocated to each fragement = 'rep' * 'aw' -> frag_2019
 6. **group by attribute** Group frag_2019 by 'District'; summary fields: 'awDem', 'awRep'; do not dissolve geometry -> grouped_districts_2019
-7. **join by attribute** Join grouped_districts_2019 (input layer 2) to cd_2019 (input layer 1) on 'District' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2019
+**Deviation from analysis plan:** The type of summary for the group by was not specified, but sum is the correct operation to add the weighted number of voters in each district together.
+7. **join by attribute** Join grouped_districts_2019 (input layer 2) to cd_2019 (input layer 1) on 'DISTRICT' (table field); copy 'sumawDem' and 'sumawRep' -> D_awr_2019
 8. **variable** New field pctDRep (*type: float64*\*): Calculate the percentage of republican votes in each district = 'sumawrep' / ('sumawRep + 'sumawDem') -> D_awr_2016
 9. **variable** New field dPerim (*type: float64*\*): Calculate the planimetric perimeter of the district (based on the projection; perim($geom)) -> D_awr_2019
 10. **variable** New field dArea (*type: float64*\*): Calculate the planimetric area of the district (based on the projection; area($geom)) -> D_awr_2019
 11. **variable** New field dCompact (*type: float64*\*): Calculate compactness using the equation given in the lab = (400 * π * 'dArea')/(dPerim^2) -> **Export as D_awr_2019.shp**
 12. **variable** Create new dataframe -> summary_stats
 13. **variable** New variable s2019_pct_min (*type: float64*\*): Calculate the minimum percentage of Republican votes in 2019 Districts (using D_awr_2019) -> summary_stats
+**Deviation from analysis plan** pctDRep must be multiplied by 100 to output a percent rather than a proportion.
 14. **variable** New variable s2019_pct_mean (*type: float64*\*): Calculate the mean percentage of Republican votes in 2019 Districts (using D_awr_2019) -> summary_stats
 15. **variable** New variable s2019_pct_max (*type: float64*\*): Calculate the maximum percentage of Republican votes in 2019 Districts (using D_awr_2019) -> summary_stats
 16. **variable** New variable s2019_compactness_min (*type: float64*\*): Calculate the minimum compactness score for 2019 Districts (using D_awr_2019) -> summary_stats
