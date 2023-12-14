@@ -4,3 +4,6 @@ geodatsets
 math
 shapely.validation
 folium
+branca.colormap
+matplotlib
+jenkspy
